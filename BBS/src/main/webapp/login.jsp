@@ -40,8 +40,8 @@
 		</div>
 	</nav>
  <div class="container">
-           <div class="col-Lg-4"></div>
-           <div class="col-Lg-4"></div>          
+           <div class="col-Lg-2"></div>
+           <div class="col-Lg-2"></div>          
               <div class="jumbotron" style="padding-top: 20px;">
                	<form method="post" action="loginAction.jsp">
                 <h3 style="text-align: center;">로그인 화면</h3>
