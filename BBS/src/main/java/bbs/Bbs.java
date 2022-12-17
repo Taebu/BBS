@@ -2,7 +2,7 @@ package bbs;
 
 public class Bbs {
 	private int bbsID;
-	private String bbsTtitle;
+	private String bbsTitle;
 	private String userID;
 	private String bbsDate;
 	private String bbsContent;
@@ -14,11 +14,11 @@ public class Bbs {
 	public void setBbsID(int bbsID) {
 		this.bbsID = bbsID;
 	}
-	public String getBbsTtitle() {
-		return bbsTtitle;
+	public String getBbsTitle() {
+		return bbsTitle;
 	}
-	public void setBbsTtitle(String bbsTtitle) {
-		this.bbsTtitle = bbsTtitle;
+	public void setBbsTitle(String bbsTitle) {
+		this.bbsTitle = bbsTitle;
 	}
 	public String getUserID() {
 		return userID;
