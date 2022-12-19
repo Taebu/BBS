@@ -71,6 +71,7 @@
 		   script.println("<script>");
 		   script.println("location.href = 'bbs.jsp'");
 		   script.println("</script>");
+		   
 		  }
 		  
 	 

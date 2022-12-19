@@ -116,7 +116,7 @@ public class BbsDAO {
 		
 		return false;
 	}
-	
+
 	public Bbs getBbs(int bbsID) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID =?";
 		
@@ -170,4 +170,5 @@ public class BbsDAO {
 		}
 		return -1;
 	}	
+
 }
