@@ -1,4 +1,3 @@
-<%@page import="bbs.BbsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -18,6 +17,14 @@
 if(session.getAttribute("userID")!=null){
 	userID = (String) session.getAttribute("userID");
 }
+if(userID==null){
+	   PrintWriter script = response.getWriter();
+	   script.println("<script>");
+	   script.println("alert('로그인을 하세요.')");
+	   script.println("location.href = 'login.jsp'");
+	   script.println("</script>");	 
+}
+
 int bbsID = 0;
 if(request.getParameter("bbsID")!=null){
 	bbsID = Integer.parseInt(request.getParameter("bbsID"));
@@ -32,6 +39,13 @@ if(bbsID == 0){
 }
 
 Bbs bbs = new BbsDAO().getBbs(bbsID);
+if(!userID.equals(bbs.getUserID())){
+	   PrintWriter script = response.getWriter();
+	   script.println("<script>");
+	   script.println("alert('권한이 없습니다.')");
+	   script.println("location.href = 'bbs.jsp'");
+	   script.println("</script>");	 
+}
 %>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -50,25 +64,6 @@ Bbs bbs = new BbsDAO().getBbs(bbsID);
                    <li><a href="main.jsp">메인</a></li>
                    <li class="active"><a href="bbs.jsp">게시판</a></li>
            </ul>
-           
-           <%
-           	if(userID == null ){
-           %>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-                     data-toggle="dropdown" role="button" aria-haspopup="true"
-                     aria-expanded="false">접속하기<span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                     	<li class="active"><a href="login.jsp">로그인</a></li>
-                     	<li><a href="join.jsp">회원가입</a></li>
-                     </ul>
-				</li>
-			</ul>
-			<%
-           	}else{
-           		%>
-           		
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle"
@@ -79,59 +74,34 @@ Bbs bbs = new BbsDAO().getBbs(bbsID);
                      </ul>
 				</li>
 			</ul>
-           		
-           		<%
-           	}
-			%>
 		</div>
 	</nav>
 	<div class="container">
 	<div class="row">
-	<form action="writeAction.jsp">
+	<form action="updateAction.jsp">
+	<input type="hidden" name="bbsID" value="<%=bbsID%>">
 		<table class="table table-striped" style="text-align: center;border:1px solid #ddd">
 		<thead>
 			<tr>
-				<th style="background-color:#eeee;text-align: center;" colspan="3">게시판 글 보기</th>
+				<th style="background-color:#eeee;text-align: center;" colspan="2">게시판 글 수정 양식</th>
 				
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td style="width:20%">글제목</td>
-				<td colspan="2"><%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+				<td><input type="text" class="form-control" placeholder="글제목" name="bbsTitle" maxlength="50" value="<%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %>"></td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td colspan="2"><%= bbs.getUserID() %></td>
-			</tr>
-			<tr>
-				<td>작성일시 </td>
-				<td colspan="2"><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11,13)+"시"+bbs.getBbsDate().substring(14,16)+"분"%></td>
-			</tr>
-			
-			<tr>
-				<td>내용</td>
-				<td colspan="2" style="height:200px;text-align:left"> <%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+				<td><textarea class="form-control" placeholder="글내용" name="bbsContent" maxlength="2048" style="height:350px"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></textarea></td>
+				
 			</tr>
 		</tbody>
 		</table>
-		<a href="bbs.jsp" class="btn btn-primary">목록</a>
-		<% if(userID!=null&&userID.equals(bbs.getUserID())){%>
-			<a href="update.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">수정</a>
-			<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID%>" class="btn btn-primary">삭제</a>
-		<% } %>
 		<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
 		</form>
 	</div>
 </div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-</body>
-</html>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
 </body>
 </html>
