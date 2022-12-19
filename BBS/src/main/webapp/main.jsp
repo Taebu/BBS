@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>JSP 로그인 웹 사이트</title>
 </head>
 <body>
@@ -68,6 +69,61 @@ if(session.getAttribute("userID")!=null){
 			%>
 		</div>
 	</nav>
+<div class="container">
+	<div class="jumbotron">
+		<div class="container">
+			<h1>웹 사이트 소개</h1>
+			<p>이 웹사이트는 부트스트랩으로 만든 JSP 웹 사이트 입니다. 최소한의 간단한 로직만을 이용해서 개발했습니다. 디자인 템플릿으로는 부트스트랩을 이용했습니다.</p>
+			<p><a class="btn btn-primary btn-pull" href="#" role="button">자세히 알아보기</a></p>
+		</div>
+
+	</div>
+</div>
+
+		<div class="container">
+			<div id="myCarousel" class="carousel slider" data-rid="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="3"></li>
+					<li data-target="#myCarousel" data-slide-to="4"></li>
+					<li data-target="#myCarousel" data-slide-to="5"></li>
+					<li data-target="#myCarousel" data-slide-to="6"></li>
+					<li data-target="#myCarousel" data-slide-to="7"></li>
+					
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="images/01.jpg">
+					</div>
+					<div class="item">
+						<img src="images/02.jpg">
+					</div>
+					<div class="item">
+						<img src="images/03.jpg">
+					</div>
+					<div class="item">
+						<img src="images/04.jpg">
+					</div>
+					<div class="item">
+						<img src="images/05.jpg">
+					</div>
+					<div class="item">
+						<img src="images/06.jpg">
+					</div>
+					<div class="item">
+						<img src="images/07.jpg">
+					</div>
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span></a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span></a>
+					
+				</div>
+
+			</div>
+		</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
